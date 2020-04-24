@@ -6,6 +6,7 @@ import {
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { UserService } from './user.service';
+import { of } from 'rxjs';
 
 describe('UserService', () => {
   let httpClient: HttpClient;
@@ -21,7 +22,26 @@ describe('UserService', () => {
   });
 
   it('should be created', async(() => {
-    service.getCurrentUser().subscribe((user) => {
+    const connect = {
+      configure: () => of(true),
+      tryLogin: () => of(true),
+      getOAuthService() {
+        return {
+          issuer: 'CONNECT',
+        };
+      },
+    };
+    const fed = {
+      configure: () => of(false),
+      tryLogin: () => of(false),
+      getOAuthService() {
+        return {
+          issuer: 'FED',
+        };
+      },
+    };
+
+    service.intialize(fed, connect).subscribe((user) => {
       expect(user).toEqual({ username: 'fake' });
     });
 
