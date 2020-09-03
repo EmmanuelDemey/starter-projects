@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "clean-css": "^4.2.3",
+    "html-minifier": "^4.0.0"
+  }
 }
