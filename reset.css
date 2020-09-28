@@ -1,0 +1,3 @@
+img:not([alt]) {
+  border: 5px solid red;
+}
