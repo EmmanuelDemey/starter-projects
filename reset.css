@@ -1,3 +1,15 @@
 img:not([alt]) {
   border: 5px solid red;
 }
+
+button {
+  font: 100%/1 serif;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+button[disabled] {
+  filter: grayscale(100%) opacity(40%);
+  cursor: initial;
+}
